@@ -21,3 +21,15 @@ jobs:
 
     - name: Run build
       run: yarn build
+
+    - name: Move compiled files to root
+      run: |
+        mv dist/* .         # Adjust the path to your compiled files if necessary
+        mv build/* .        # Add other paths if needed
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: build-artifacts
+        path: |
+          ./*    # This will upload all files in the root directory
