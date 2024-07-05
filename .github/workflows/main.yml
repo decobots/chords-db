@@ -1,0 +1,28 @@
+name: Build and Test with Yarn
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'  # Specify the Node.js version you need
+
+    - name: Install dependencies with Yarn
+      run: yarn install
+
+    - name: Run build
+      run: yarn build
